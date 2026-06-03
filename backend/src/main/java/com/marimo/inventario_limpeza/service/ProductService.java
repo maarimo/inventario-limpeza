@@ -79,4 +79,12 @@ public class ProductService {
                 .minimumQuantity(product.getMinimumQuantity())
                 .build();
     }
+
+    public List<ProductResponseDTO> getLowStockProducts() {
+
+        return repository.findLowStockProducts()
+                .stream()
+                .map(this::toResponse)
+                .toList();
+    }
 }

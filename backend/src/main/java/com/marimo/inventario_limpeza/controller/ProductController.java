@@ -5,6 +5,7 @@ import com.marimo.inventario_limpeza.dto.ProductResponseDTO;
 import com.marimo.inventario_limpeza.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -44,5 +45,13 @@ public class ProductController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         service.delete(id);
+    }
+
+    @GetMapping("/low-stock")
+    public ResponseEntity<List<ProductResponseDTO>> getLowStockProducts() {
+
+        return ResponseEntity.ok(
+                service.getLowStockProducts()
+        );
     }
 }
